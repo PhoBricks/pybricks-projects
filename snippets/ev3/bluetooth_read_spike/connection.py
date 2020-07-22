@@ -47,6 +47,9 @@ class SpikePrimeStreamReader():
 
     def disconnect(self):
         self.sock.close()
+    
+    def send_command(self, command):
+        self.sock.send((command + '\r').encode())
 
     def reader(self):
         while True:
@@ -78,3 +81,9 @@ class SpikePrimeStreamReader():
 
     def orientation(self):
         return self.values()[8]
+    
+    def matrix(self):
+        return self.values()[9]
+
+    def runtimer(self):
+        return self.values()[10]
